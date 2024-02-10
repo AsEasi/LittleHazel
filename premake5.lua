@@ -17,8 +17,11 @@ project "LHazel"
     kind "SharedLib"
     language "C++"
 
+    pchheader "LHPCH.h"
+    pchsource "LHazel/Source/LHPCH.cpp"
+
     targetdir ("%{wks.location}/Bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("%{wks.location}/Bin_Int/" .. outputdir .. "/%{prj.name}")
+    objdir ("%{wks.location}/Bin_Int/" .. outputdir .. "/%{prj.name}")
 
     files {
         "%{prj.name}/Source/**.h",
@@ -26,7 +29,8 @@ project "LHazel"
     }
 
     includedirs {
-        "%{prj.name}/Vendor/spdlog@1.13.0/include"
+        "%{prj.name}/Source",
+        "%{prj.name}/Vendor/spdlog@1.13.0/include",
     }
 
     filter "system:windows"

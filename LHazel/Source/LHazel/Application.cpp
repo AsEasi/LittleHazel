@@ -1,3 +1,4 @@
+#include "LHPCH.h"
 #include "Application.h"
 
 namespace LHazel
