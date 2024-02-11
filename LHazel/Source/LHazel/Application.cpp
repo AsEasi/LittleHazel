@@ -4,14 +4,24 @@
 namespace LHazel
 {
 
+    Application::Application()
+    {
+        _Window = std::unique_ptr<Window>(Window::Create());
+    }
+
+    Application::~Application()
+    {
+    }
+
     void Application::Run()
     {
-        Log::Init();
+        _Running = true;
 
-        LH_CORE_INFO("Welcome to Little Hazel.");
+        LH_CORE_INFO("Application Run()");
 
-        while (true)
+        while (_Running)
         {
+            _Window->OnUpdate();
         }
     }
 

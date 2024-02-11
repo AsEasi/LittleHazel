@@ -4,3 +4,5 @@
 
 #include "LHazel/Core.h"
 #include "LHazel/Application.h"
+
+#include "LHazel/EntryPoint.h"

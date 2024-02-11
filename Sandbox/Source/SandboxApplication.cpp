@@ -1,5 +1,4 @@
 #include <LHazel.h>
-#include <LHazel/EntryPoint.h>
 
 class Sandbox : public LHazel::Application
 {
