@@ -1,5 +1,7 @@
 #pragma once
 
+// LH DLL API :
+
 #ifdef LH_PLATFORM_WINDOWS
     #ifdef LH_BUILD_DLL
         #define LHAZEL_API __declspec(dllexport)
@@ -10,4 +12,32 @@
     #error Little Hazel only support Windows.
 #endif
 
+// Bit :
+
 #define BIT(x) (1 << x)
+
+// Assertion :
+
+#ifdef LH_ENABLE_ASSERTS
+    #define LH_ASSERT(Condition, ...) \
+        {\
+            if (!(Condition))\
+            {\
+                LH_ERROR("Assertion Failed: {0}", __VA_ARGS__);\
+                __debugBreak();\
+            }\
+        }
+    #define LH_CORE_ASSERT(Condition, ...) \
+        {\
+            if (!(Condition))\
+            {\
+                LH_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__);\
+                __debugBreak();\
+            }\
+        }
+#else
+    #define LH_ASSERT(Condition, ...) 
+    #define LH_CORE_ASSERT(Condition, ...) 
+#endif
+
+#include "Log.h"
