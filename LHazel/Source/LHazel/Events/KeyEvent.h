@@ -25,15 +25,15 @@ namespace LHazel
     {
     public:
 
-        KeyPressedEvent(const int _Keycode, bool _IsRepeat = false)
-            : KeyEvent(_Keycode), _IsRepeat(_IsRepeat) {}
+        KeyPressedEvent(const int _Keycode, int _Repeat = 0)
+            : KeyEvent(_Keycode), _Repeat(_Repeat) {}
 
-        bool IsRepeat() const { return _IsRepeat; }
+        bool IsRepeat() const { return _Repeat; }
 
         std::string ToString() const override
         {
             std::stringstream _SS;
-            _SS << "KeyPressedEvent: " << _KeyCode << " (repeat = " << _IsRepeat << ")";
+            _SS << "KeyPressedEvent: " << _KeyCode << " (repeat = " << _Repeat << ")";
             return _SS.str();
         }
 
@@ -41,7 +41,7 @@ namespace LHazel
 
     private:
 
-        bool _IsRepeat;
+        int _Repeat;
     };
 
     class KeyReleasedEvent : public KeyEvent

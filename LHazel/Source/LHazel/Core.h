@@ -40,4 +40,6 @@
     #define LH_CORE_ASSERT(Condition, ...) 
 #endif
 
+#define LH_BIND_EVENT_FUNCTION(Function) std::bind(&Function, this, std::placeholders::_1)
+
 #include "Log.h"
