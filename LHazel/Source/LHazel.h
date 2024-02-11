@@ -2,7 +2,9 @@
 
 // For use by Little Hazel applications.
 
-#include "LHazel/Core.h"
 #include "LHazel/Application.h"
+#include "LHazel/Layer.h"
+#include "LHazel/Log.h"
 
+// main()
 #include "LHazel/EntryPoint.h"

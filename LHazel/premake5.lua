@@ -40,21 +40,18 @@ project "LHazel"
 
     filter "configurations:Debug"
         symbols "On"
-
-        defines {
-            "LH_DEBUG",
-        }
+        staticruntime "off"
+        runtime "Debug"
+        defines "LH_DEBUG"
 
     filter "configurations:Release"
         optimize "On"
-
-        defines {
-            "LH_RELEASE",
-        }
+        staticruntime "off"
+        runtime "Release"
+        defines "LH_RELEASE"
 
     filter "configurations:Dist"
         optimize "On"
-
-        defines {
-            "LH_DIST",
-        }
+        staticruntime "off"
+        runtime "Release"
+        defines "LH_DIST"

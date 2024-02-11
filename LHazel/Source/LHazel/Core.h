@@ -12,7 +12,7 @@
     #error Little Hazel only support Windows.
 #endif
 
-// Bit :
+// Bit macro :
 
 #define BIT(x) (1 << x)
 
@@ -40,6 +40,10 @@
     #define LH_CORE_ASSERT(Condition, ...) 
 #endif
 
+// Bind event function :
+
 #define LH_BIND_EVENT_FUNCTION(Function) std::bind(&Function, this, std::placeholders::_1)
+
+// Common use headers :
 
 #include "Log.h"

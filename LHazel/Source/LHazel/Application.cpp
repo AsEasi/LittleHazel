@@ -22,6 +22,23 @@ namespace LHazel
         _Dispatcher.Dispatch<WindowCloseEvent>(LH_BIND_EVENT_FUNCTION(Application::OnWindowClose));
 
         LH_CORE_TRACE("{0}", _Event);
+
+        for (auto _Iterator = _LayerStack.rbegin(); _Iterator != _LayerStack.rend(); ++_Iterator)
+        {
+            if (_Event.Handled) break;
+
+            (*_Iterator)->OnEvent(_Event);
+        }
+    }
+
+    void Application::PushLayer(Layer* _Layer)
+    {
+        _LayerStack.PushLayer(_Layer);
+    }
+
+    void Application::PushOverlay(Layer* _Overlay)
+    {
+        _LayerStack.PushOverlay(_Overlay);
     }
 
     bool Application::OnWindowClose(WindowCloseEvent& _Event)
@@ -39,6 +56,11 @@ namespace LHazel
 
         while (_Running)
         {
+            for (Layer* _Layer : _LayerStack)
+            {
+                _Layer->OnUpdate();
+            }
+
             _Window->OnUpdate();
         }
     }
