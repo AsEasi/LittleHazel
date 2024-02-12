@@ -6,7 +6,8 @@ public:
 
     Sandbox()
     {
-
+        // Add ImGui layer.
+        PushOverlay(new LHazel::ImGuiLayer());
     }
 
     ~Sandbox()

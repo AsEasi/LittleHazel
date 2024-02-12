@@ -18,13 +18,17 @@
 
 // Assertion :
 
+#ifdef LH_DEBUG
+    #define LH_ENABLE_ASSERTS
+#endif
+
 #ifdef LH_ENABLE_ASSERTS
     #define LH_ASSERT(Condition, ...) \
         {\
             if (!(Condition))\
             {\
                 LH_ERROR("Assertion Failed: {0}", __VA_ARGS__);\
-                __debugBreak();\
+                __debugbreak();\
             }\
         }
     #define LH_CORE_ASSERT(Condition, ...) \
@@ -32,7 +36,7 @@
             if (!(Condition))\
             {\
                 LH_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__);\
-                __debugBreak();\
+                __debugbreak();\
             }\
         }
 #else
@@ -46,4 +50,4 @@
 
 // Common use headers :
 
-#include "Log.h"
+#include "LHazel/Log/Log.h"

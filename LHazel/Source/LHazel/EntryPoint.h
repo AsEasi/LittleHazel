@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Log.h"
+#include "LHazel/Log/Log.h"
 
 #ifdef LH_PLATFORM_WINDOWS
 

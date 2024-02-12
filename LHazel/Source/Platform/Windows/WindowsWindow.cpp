@@ -1,8 +1,8 @@
 #include "LHPCH.h"
 #include "WindowsWindow.h"
-#include "LHazel/Events/ApplicationEvent.h"
-#include "LHazel/Events/KeyEvent.h"
-#include "LHazel/Events/MouseEvent.h"
+#include "LHazel/Event/ApplicationEvent.h"
+#include "LHazel/Event/KeyEvent.h"
+#include "LHazel/Event/MouseEvent.h"
 
 namespace LHazel
 {
@@ -73,6 +73,12 @@ namespace LHazel
 
         glfwMakeContextCurrent(_Window);
         glfwSetWindowUserPointer(_Window, &_Data);
+
+        // Init Glad :
+
+        int _GladVersion = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+
+        LH_CORE_ASSERT((_GladVersion != 0), "Initialize GLFW failed.");
 
         // Set VSync :
 

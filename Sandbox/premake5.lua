@@ -1,6 +1,7 @@
 project "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    staticruntime "off"
 
     targetdir ("%{wks.location}/Bin/" .. outputdir .. "/%{prj.name}")
     objdir ("%{wks.location}/Bin_Int/" .. outputdir .. "/%{prj.name}")
@@ -21,7 +22,6 @@ project "Sandbox"
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines {
@@ -30,18 +30,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         symbols "On"
-        staticruntime "off"
         runtime "Debug"
         defines "LH_DEBUG"
 
     filter "configurations:Release"
         optimize "On"
-        staticruntime "off"
         runtime "Release"
         defines "LH_RELEASE"
 
     filter "configurations:Dist"
         optimize "On"
-        staticruntime "off"
         runtime "Release"
         defines "LH_DIST"

@@ -1,0 +1,9 @@
+Glad-Version: 0.1.36 
+Language-C/C++
+Specification-OpenGL
+Profile-Core
+gl-version4.6
+gles1-None
+gles2-None
+glsc2-None
+Generate a Loader
