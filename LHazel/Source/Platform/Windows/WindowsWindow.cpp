@@ -94,7 +94,7 @@ namespace LHazel
                 _Data.Width = _Width;
                 _Data.Height = _Height;
     
-                WindowResizeEvent _Event(_Data.Width, _Data.Height);
+                WindowResizedEvent _Event(_Data.Width, _Data.Height);
     
                 _Data.EventCallback(_Event);
             });
@@ -103,7 +103,7 @@ namespace LHazel
             {
                 WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_GLFWWindow);
 
-                WindowCloseEvent _Event;
+                WindowClosedEvent _Event;
 
                 _Data.EventCallback(_Event);
             });

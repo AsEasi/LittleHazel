@@ -8,7 +8,7 @@ namespace LHazel
     enum class Enum_EventType
     {
         None = 0,
-        WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
+        WindowClosed, WindowResized, WindowFocused, WindowLostFocus, WindowMoved,
         AppTick, AppUpdate, AppRender,
         KeyPressed, KeyReleased, KeyTyped,
         MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
@@ -43,9 +43,9 @@ namespace LHazel
         virtual int GetCategoryFlags() const = 0;
         virtual std::string ToString() const { return GetName(); }
 
-        bool IsInCategory(Enum_EventCategory category) const
+        bool IsInCategory(Enum_EventCategory _Category) const
         {
-            return GetCategoryFlags() & category;
+            return GetCategoryFlags() & _Category;
         }
     };
 
@@ -76,8 +76,8 @@ namespace LHazel
 
     // Operator :
 
-    inline std::ostream& operator<<(std::ostream& os, const Event& e)
+    inline std::ostream& operator<<(std::ostream& _OSteam, const Event& _Event)
     {
-        return os << e.ToString();
+        return _OSteam << _Event.ToString();
     }
 }

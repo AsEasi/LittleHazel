@@ -36,7 +36,7 @@ namespace LHazel
 
         LayerStack _LayerStack;
 
-        bool OnWindowClose(WindowCloseEvent& _Event);
+        bool OnWindowClose(WindowClosedEvent& _Event);
     };
 
     // To be defined in CLIENT.

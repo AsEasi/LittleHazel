@@ -14,9 +14,11 @@ workspace "LittleHazel"
 
 outputdir = "%{cfg.buildcfg}_%{cfg.system}_%{cfg.architecture}"
 
-include "LHazel/Vendor/GLFW@3.3.9"
-include "LHazel/Vendor/Glad@0.1.36"
-include "LHazel/Vendor/ImGui@1.90.2"
+group "Dependencies"
+    include "LHazel/Vendor/GLFW@3.3.9"
+    include "LHazel/Vendor/Glad@0.1.36"
+    include "LHazel/Vendor/ImGui@1.90.2"
+group ""
 
 include "LHazel"
 include "Sandbox"

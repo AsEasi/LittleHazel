@@ -5,21 +5,21 @@
 namespace LHazel
 {
 
-    class WindowCloseEvent : public Event
+    class WindowClosedEvent : public Event
     {
     public:
 
-        WindowCloseEvent() = default;
+        WindowClosedEvent() = default;
 
-        EVENT_CLASS_TYPE(WindowClose)
+        EVENT_CLASS_TYPE(WindowClosed)
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
     };
 
-    class WindowResizeEvent : public Event
+    class WindowResizedEvent : public Event
     {
     public:
 
-        WindowResizeEvent(unsigned int _Width, unsigned int _Height)
+        WindowResizedEvent(unsigned int _Width, unsigned int _Height)
             : _Width(_Width), _Height(_Height) {}
 
         unsigned int GetWidth() const { return _Width; }
@@ -34,7 +34,7 @@ namespace LHazel
             return _SS.str();
         }
 
-        EVENT_CLASS_TYPE(WindowResize)
+        EVENT_CLASS_TYPE(WindowResized)
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
     private:
