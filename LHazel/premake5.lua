@@ -10,8 +10,10 @@ project "LHazel"
     pchsource "%{wks.location}/%{prj.name}/Source/LHPCH.cpp"
 
     files {
-        "%{wks.location}/%{prj.name}/Source/**.h",
-        "%{wks.location}/%{prj.name}/Source/**.cpp",
+        "%{wks.location}/LHazel/Source/**.h",
+        "%{wks.location}/LHazel/Source/**.cpp",
+		"%{wks.location}/LHazel/Vendor/GLM@1.0.0/**.hpp",
+		"%{wks.location}/LHazel/Vendor/GLM@1.0.0/**.inl",
     }
 
     includedirs {
@@ -20,6 +22,7 @@ project "LHazel"
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
+        "%{IncludeDir.GLM}",
     }
 
     links {
