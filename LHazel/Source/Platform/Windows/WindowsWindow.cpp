@@ -29,7 +29,7 @@ namespace LHazel
     void WindowsWindow::OnUpdate()
     {
         glfwPollEvents();
-        glfwSwapBuffers(_Window);
+        glfwSwapBuffers(_NativeWindow);
     }
 
     void WindowsWindow::SetVSync(bool _Enable)
@@ -67,12 +67,12 @@ namespace LHazel
 
         // Init GLFW window :
 
-        _Window = glfwCreateWindow(
+        _NativeWindow = glfwCreateWindow(
             _Data.Width, _Data.Height, _Data.Title.c_str(), nullptr, nullptr
         );
 
-        glfwMakeContextCurrent(_Window);
-        glfwSetWindowUserPointer(_Window, &_Data);
+        glfwMakeContextCurrent(_NativeWindow);
+        glfwSetWindowUserPointer(_NativeWindow, &_Data);
 
         // Init Glad :
 
@@ -87,9 +87,9 @@ namespace LHazel
         // Set GLFW callbacks :
         #pragma region GLFWCallbacks
 
-        glfwSetWindowSizeCallback(_Window, [](GLFWwindow* _GLFWWindow, int _Width, int _Height)
+        glfwSetWindowSizeCallback(_NativeWindow, [](GLFWwindow* _NativeWindow, int _Width, int _Height)
             {
-                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_GLFWWindow);
+                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_NativeWindow);
     
                 _Data.Width = _Width;
                 _Data.Height = _Height;
@@ -99,18 +99,18 @@ namespace LHazel
                 _Data.EventCallback(_Event);
             });
 
-        glfwSetWindowCloseCallback(_Window, [](GLFWwindow* _GLFWWindow)
+        glfwSetWindowCloseCallback(_NativeWindow, [](GLFWwindow* _NativeWindow)
             {
-                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_GLFWWindow);
+                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_NativeWindow);
 
                 WindowClosedEvent _Event;
 
                 _Data.EventCallback(_Event);
             });
 
-        glfwSetKeyCallback(_Window, [](GLFWwindow* _GLFWWindow, int _Key, int _ScanCode, int _Action, int _Mods)
+        glfwSetKeyCallback(_NativeWindow, [](GLFWwindow* _NativeWindow, int _Key, int _ScanCode, int _Action, int _Mods)
             {
-                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_GLFWWindow);
+                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_NativeWindow);
 
                 switch (_Action)
                 {
@@ -135,18 +135,18 @@ namespace LHazel
                 }
             });
 
-        glfwSetCharCallback(_Window, [](GLFWwindow* _GLFWWindow, unsigned int _Keycode)
+        glfwSetCharCallback(_NativeWindow, [](GLFWwindow* _NativeWindow, unsigned int _Keycode)
             {
-                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_GLFWWindow);
+                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_NativeWindow);
 
                 KeyTypedEvent _Event(_Keycode);
 
                 _Data.EventCallback(_Event);
             });
 
-        glfwSetMouseButtonCallback(_Window, [](GLFWwindow* _GLFWWindow, int _Button, int _Action, int _Mods)
+        glfwSetMouseButtonCallback(_NativeWindow, [](GLFWwindow* _NativeWindow, int _Button, int _Action, int _Mods)
             {
-                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_GLFWWindow);
+                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_NativeWindow);
 
                 switch (_Action)
                 {
@@ -165,18 +165,18 @@ namespace LHazel
                 }
             });
 
-        glfwSetScrollCallback(_Window, [](GLFWwindow* _GLFWWindow, double _OffsetX, double _OffsetY)
+        glfwSetScrollCallback(_NativeWindow, [](GLFWwindow* _NativeWindow, double _OffsetX, double _OffsetY)
             {
-                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_GLFWWindow);
+                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_NativeWindow);
 
                 MouseScrolledEvent _Event((float)_OffsetX, (float)_OffsetY);
 
                 _Data.EventCallback(_Event);
             });
 
-        glfwSetCursorPosCallback(_Window, [](GLFWwindow* _GLFWWindow, double _PosX, double _PosY)
+        glfwSetCursorPosCallback(_NativeWindow, [](GLFWwindow* _NativeWindow, double _PosX, double _PosY)
             {
-                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_GLFWWindow);
+                WindowData& _Data = *(WindowData*)glfwGetWindowUserPointer(_NativeWindow);
 
                 MouseMovedEvent _Event((float)_PosX, (float)_PosY);
 
@@ -188,6 +188,6 @@ namespace LHazel
     
     void WindowsWindow::Shutdown()
     {
-        glfwDestroyWindow(_Window);
+        glfwDestroyWindow(_NativeWindow);
     }
 }

@@ -9,7 +9,7 @@
 namespace LHazel
 {
 
-    class LHAZEL_API Application
+    class Application
     {
     public:
 
@@ -33,6 +33,7 @@ namespace LHazel
 
         bool _Running = false;
         std::unique_ptr<Window> _Window;
+        ImGuiLayer* _ImGuiLayer;
 
         LayerStack _LayerStack;
 

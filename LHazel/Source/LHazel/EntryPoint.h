@@ -1,7 +1,5 @@
 #pragma once
 
-#include "LHazel/Log/Log.h"
-
 #ifdef LH_PLATFORM_WINDOWS
 
 extern LHazel::Application* LHazel::CreateApplication();

@@ -10,7 +10,7 @@ namespace LHazel
     {
     public:
 
-        LayerStack();
+        LayerStack() = default;
         ~LayerStack();
 
         void PushLayer(Layer* _Layer);
@@ -26,7 +26,7 @@ namespace LHazel
     private:
 
         std::vector<Layer*> _Layers;
-        std::vector<Layer*>::iterator _LayerInsert;
+        unsigned int _LayerInsertIndex = 0;
     };
 
 }

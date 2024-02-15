@@ -39,6 +39,8 @@ namespace LHazel
         virtual void SetVSync(bool _Enable) = 0;
         virtual bool IsVSync() const = 0;
 
+        virtual void* GetNativeWindow() const = 0;
+
         static Window* Create(const WindowProperties& _Properties = WindowProperties());
     };
 

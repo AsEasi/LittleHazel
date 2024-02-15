@@ -1,7 +1,8 @@
 project "LHazel"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
-    staticruntime "off"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("%{wks.location}/Bin/" .. outputdir .. "/%{prj.name}")
     objdir ("%{wks.location}/Bin_Int/" .. outputdir .. "/%{prj.name}")
@@ -12,6 +13,7 @@ project "LHazel"
     files {
         "%{wks.location}/LHazel/Source/**.h",
         "%{wks.location}/LHazel/Source/**.cpp",
+        
 		"%{wks.location}/LHazel/Vendor/GLM@1.0.0/**.hpp",
 		"%{wks.location}/LHazel/Vendor/GLM@1.0.0/**.inl",
     }
@@ -33,29 +35,23 @@ project "LHazel"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
         systemversion "latest"
 
         defines {
             "LH_PLATFORM_WINDOWS",
-            "LH_BUILD_DLL",
-        }
-
-        postbuildcommands {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
         }
 
     filter "configurations:Debug"
-        symbols "On"
+        symbols "on"
         runtime "Debug"
         defines "LH_DEBUG"
 
     filter "configurations:Release"
-        optimize "On"
+        optimize "on"
         runtime "Release"
         defines "LH_RELEASE"
 
     filter "configurations:Dist"
-        optimize "On"
+        optimize "on"
         runtime "Release"
         defines "LH_DIST"

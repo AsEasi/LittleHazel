@@ -20,6 +20,8 @@ namespace LHazel
         virtual unsigned int GetWidth() const override { return _Data.Width; }
         virtual unsigned int GetHeight() const override { return _Data.Height; }
 
+        virtual void* GetNativeWindow() const override { return _NativeWindow; }
+
         virtual void SetEventCallback(const std::function<void(Event&)> _EventCallback) override
         {
             _Data.EventCallback = _EventCallback;
@@ -40,7 +42,7 @@ namespace LHazel
             std::function<void(Event&)> EventCallback;
         };
 
-        GLFWwindow* _Window;
+        GLFWwindow* _NativeWindow;
         WindowData _Data;
 
         virtual void Init(const WindowProperties& _Properties);

@@ -1,13 +1,6 @@
 #pragma once
 
-// LH DLL API :
-
 #ifdef LH_PLATFORM_WINDOWS
-    #ifdef LH_BUILD_DLL
-        #define LHAZEL_API __declspec(dllexport)
-    #else
-        #define LHAZEL_API __declspec(dllimport)
-    #endif
 #else
     #error Little Hazel only support Windows.
 #endif
@@ -44,10 +37,10 @@
     #define LH_CORE_ASSERT(Condition, ...) 
 #endif
 
-// Bind event function :
+// Bind event function macro :
 
 #define LH_BIND_EVENT_FUNCTION(Function) std::bind(&Function, this, std::placeholders::_1)
 
-// Common use headers :
+// Often used headers :
 
 #include "LHazel/Log/Log.h"

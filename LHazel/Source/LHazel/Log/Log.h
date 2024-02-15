@@ -7,7 +7,7 @@
 namespace LHazel
 {
 
-    class LHAZEL_API Log
+    class Log
     {
     public:
 

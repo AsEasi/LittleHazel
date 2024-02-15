@@ -4,11 +4,6 @@
 namespace LHazel
 {
 
-    LayerStack::LayerStack()
-    {
-        _LayerInsert = begin();
-    }
-
     LayerStack::~LayerStack()
     {
         for (Layer* _Layer : _Layers)
@@ -21,7 +16,8 @@ namespace LHazel
 
     void LayerStack::PushLayer(Layer* _Layer)
     {
-        _LayerInsert = _Layers.emplace(_LayerInsert, _Layer);
+        _Layers.emplace(begin() + _LayerInsertIndex, _Layer);
+        _LayerInsertIndex++;
 
         _Layer->OnAttach();
     }
@@ -35,23 +31,29 @@ namespace LHazel
 
     void LayerStack::PopLayer(Layer* _Layer)
     {
-        auto _Iterator = std::find(begin(), end(), _Layer);
+        auto _FirstLayer = begin();
+        auto _LastLayer = begin() + _LayerInsertIndex;
 
-        if (_Iterator != end())
+        auto _Iterator = std::find(_FirstLayer, _LastLayer, _Layer);
+
+        if (_Iterator != _LastLayer)
         {
             _Layers.erase(_Iterator);
 
             _Layer->OnDetach();
 
-            _LayerInsert--;
+            _LayerInsertIndex--;
         }
     }
 
     void LayerStack::PopOverlay(Layer* _Layer)
     {
-        auto _Iterator = std::find(begin(), end(), _Layer);
+        auto _FirstOverlay = begin() + _LayerInsertIndex;
+        auto _LastOverLay = end();
 
-        if (_Iterator != end())
+        auto _Iterator = std::find(_FirstOverlay, _LastOverLay, _Layer);
+
+        if (_Iterator != _LastOverLay)
         {
             _Layers.erase(_Iterator);
 

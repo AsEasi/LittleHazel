@@ -1,7 +1,8 @@
 project "Sandbox"
     kind "ConsoleApp"
     language "C++"
-    staticruntime "off"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("%{wks.location}/Bin/" .. outputdir .. "/%{prj.name}")
     objdir ("%{wks.location}/Bin_Int/" .. outputdir .. "/%{prj.name}")
@@ -12,8 +13,8 @@ project "Sandbox"
     }
 
     includedirs {
-        "%{wks.location}/LHazel/Vendor/spdlog@1.13.0/include",
         "%{wks.location}/LHazel/Source",
+        "%{IncludeDir.spdlog}",
     }
 
     links {
@@ -21,7 +22,6 @@ project "Sandbox"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
         systemversion "latest"
 
         defines {
@@ -29,16 +29,16 @@ project "Sandbox"
         }
 
     filter "configurations:Debug"
-        symbols "On"
+        symbols "on"
         runtime "Debug"
         defines "LH_DEBUG"
 
     filter "configurations:Release"
-        optimize "On"
+        optimize "on"
         runtime "Release"
         defines "LH_RELEASE"
 
     filter "configurations:Dist"
-        optimize "On"
+        optimize "on"
         runtime "Release"
         defines "LH_DIST"

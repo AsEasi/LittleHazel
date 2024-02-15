@@ -7,13 +7,23 @@ namespace LHazel
 
     Application::Application()
     {
+        // Set instance to this.
+
         LH_ASSERT((_Current == nullptr), "Application instance already exist.");
 
         _Current = this;
 
+        // Set window.
+
         _Window = std::unique_ptr<Window>(Window::Create());
 
         _Window->SetEventCallback(LH_BIND_EVENT_FUNCTION(Application::OnEvent));
+
+        // Set ImGui
+
+        _ImGuiLayer = new ImGuiLayer();
+
+        PushOverlay(_ImGuiLayer);
     }
 
     Application::~Application()
@@ -65,6 +75,14 @@ namespace LHazel
             {
                 _Layer->OnUpdate();
             }
+
+            // ImGui
+            _ImGuiLayer->BeginImGui();
+            for (Layer* _Layer : _LayerStack)
+            {
+                _Layer->OnImGui();
+            }
+            _ImGuiLayer->EndImGui();
 
             _Window->OnUpdate();
         }
