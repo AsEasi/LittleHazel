@@ -7,8 +7,8 @@
 #include "LHazel/Log/Log.h"
 
 #include "LHazel/Input/Input.h"
-#include "LHazel/Input/KeyboardCodes.h"
-#include "LHazel/Input/MouseCodes.h"
+#include "LHazel/Input/KeyboardCode.h"
+#include "LHazel/Input/MouseCode.h"
 
 #include "LHazel/ImGui/ImGuiLayer.h"
 

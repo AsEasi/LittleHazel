@@ -4,6 +4,10 @@
 #include "LHazel/Event/KeyEvent.h"
 #include "LHazel/Event/MouseEvent.h"
 
+#include "Platform/OpenGL/OpenGLRenderContext.h"
+
+#include <GLFW/glfw3.h>
+
 namespace LHazel
 {
     static void GLFWErrorCallback(int _Error, const char* _Description)
@@ -29,13 +33,12 @@ namespace LHazel
     void WindowsWindow::OnUpdate()
     {
         glfwPollEvents();
-        glfwSwapBuffers(_NativeWindow);
+        _RenderContext->SwapBuffers();
     }
 
     void WindowsWindow::SetVSync(bool _Enable)
     {
         glfwSwapInterval(_Enable ? 1 : 0);
-
         _Data.VSync = _Enable;
     }
 
@@ -57,7 +60,6 @@ namespace LHazel
         if (!_GLFWInitialized)
         {
             int _Success = glfwInit();
-
             LH_CORE_ASSERT(_Success, "Initialize GLFW failed.");
 
             glfwSetErrorCallback(GLFWErrorCallback);
@@ -65,26 +67,20 @@ namespace LHazel
             _GLFWInitialized = true;
         }
 
-        // Init GLFW window :
-
+        // Init GLFW window.
         _NativeWindow = glfwCreateWindow(
             _Data.Width, _Data.Height, _Data.Title.c_str(), nullptr, nullptr
         );
-
-        glfwMakeContextCurrent(_NativeWindow);
         glfwSetWindowUserPointer(_NativeWindow, &_Data);
 
-        // Init Glad :
+        // Init render context.
+        _RenderContext = new OpenGLRenderContext(_NativeWindow);
+        _RenderContext->Init();
 
-        int _GladVersion = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-
-        LH_CORE_ASSERT((_GladVersion != 0), "Initialize GLFW failed.");
-
-        // Set VSync :
-
+        // Set VSync.
         SetVSync(true);
 
-        // Set GLFW callbacks :
+        // Set GLFW callbacks.
         #pragma region GLFWCallbacks
 
         glfwSetWindowSizeCallback(_NativeWindow, [](GLFWwindow* _NativeWindow, int _Width, int _Height)

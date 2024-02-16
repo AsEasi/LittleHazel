@@ -1,9 +1,9 @@
 #pragma once
 
 #include "LHazel/Window/Window.h"
+#include "LHazel/Renderer/RenderContext.h"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+struct GLFWwindow;
 
 namespace LHazel
 {
@@ -44,6 +44,7 @@ namespace LHazel
 
         GLFWwindow* _NativeWindow;
         WindowData _Data;
+        RenderContext* _RenderContext;
 
         virtual void Init(const WindowProperties& _Properties);
         virtual void Shutdown();

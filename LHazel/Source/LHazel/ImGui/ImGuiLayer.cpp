@@ -1,7 +1,7 @@
 #include "LHPCH.h"
 #include "ImGuiLayer.h"
 #include "LHazel/Application/Application.h"
-#include "LHazel/Input/KeyboardCodes.h"
+#include "LHazel/Input/KeyboardCode.h"
 
 #include "backends/imgui_impl_opengl3.h"
 #include "backends/imgui_impl_glfw.h"
