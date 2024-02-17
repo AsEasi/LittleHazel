@@ -17,9 +17,13 @@ namespace LHazel
         virtual void Bind() const override;
         virtual void Unbind() const override;
 
+        virtual const BufferLayout& GetLayout() const override { return _Layout; }
+        virtual void SetLayout(const BufferLayout& _Layout) override { this->_Layout = _Layout; }
+
     private:
 
         uint32_t _BufferID;
+        BufferLayout _Layout;
     };
 
     class OpenGLIndexBuffer : public IndexBuffer
